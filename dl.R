@@ -1,8 +1,11 @@
 # download a file
 dl  <- function(url, filename) {
-  if (!file.exists(filename)) {
-    download.file(url, filename)
-  }
-  downloaded  <- Sys.time()
-  downloaded
+    if (url.exists(url)) {
+        if (!file.exists(filename)) {
+            download.file(url, filename, method = 'wget')
+            downloaded  <- Sys.time()
+        }    
+        else stop("file with same name exists")
+    }
+    else stop("bad url")
 }
