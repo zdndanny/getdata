@@ -1,100 +1,140 @@
-# Code book of the submitted tidy data set.
+---
+title: "CodeBook - Getting and Cleaning Data Course Project"
+author: "Danny Zeng"
+date: "03/17/2015"
+output: html_document
+---
 
-The data file is mytidydata.txt.  It can be loaded in to R with read.table().
+This is the codebook that describes the variables, the data, and any transformations or work that is performed to clean up the data.  
 
-In this data set, each row represent a summary on tests in one activity,
-performed by one subject. 
+# The submitted Dataset
+
+The data file is "courseproject.txt".  
+
+To load this dataset in R for any further analysis
+```
+    data  <- read.table("courseproject.txt", header = TRUE)
+```
+
+# Variables
+
+In the raw dataset, these signals were used to estimate variables of the feature vector for each pattern:  
+'-XYZ' is used to denote 3-axial signals in the X, Y and Z directions.
+```
+tBodyAcc-XYZ
+tGravityAcc-XYZ
+tBodyAccJerk-XYZ
+tBodyGyro-XYZ
+tBodyGyroJerk-XYZ
+tBodyAccMag
+tGravityAccMag
+tBodyAccJerkMag
+tBodyGyroMag
+tBodyGyroJerkMag
+fBodyAcc-XYZ
+fBodyAccJerk-XYZ
+fBodyGyro-XYZ
+fBodyAccMag
+fBodyAccJerkMag
+fBodyGyroMag
+fBodyGyroJerkMag
+```
+For the project, I have extracted only two variables estimated from these signals: 
+```
+mean(): Mean value
+std(): Standard deviation
+```
+As result, each row of the dataset is a summary of the specifitied group of (activity, subject), composed from average of all the variables. 
 
 The columns in each row is listed and explained as below. 
-
+```
 "1" "activity"  -   the label of activity, the value can be one of: 
     "LAYING", "SITTING", "STANDING", "WALKING", "WALKING_DOWNSTAIRS", and
     "WALKING_UPSTAIRS" 
     
 "2" "subject"   -   a number in range 1-30,  representing one of the subjects.
-
+```
 The rest of a row are the averages of the measurements on the mean and standard deviation for each measurement. 
+```
+"3" "tbodyacc_mean_x"
+"4" "tbodyacc_mean_y"
+"5" "tbodyacc_mean_z"
+"6" "tbodyacc_std_x"
+"7" "tbodyacc_std_y"
+"8" "tbodyacc_std_z"
+"9" "tgravityacc_mean_x"
+"10" "tgravityacc_mean_y"
+"11" "tgravityacc_mean_z"
+"12" "tgravityacc_std_x"
+"13" "tgravityacc_std_y"
+"14" "tgravityacc_std_z"
+"15" "tbodyaccjerk_mean_x"
+"16" "tbodyaccjerk_mean_y"
+"17" "tbodyaccjerk_mean_z"
+"18" "tbodyaccjerk_std_x"
+"19" "tbodyaccjerk_std_y"
+"20" "tbodyaccjerk_std_z"
+"21" "tbodygyro_mean_x"
+"22" "tbodygyro_mean_y"
+"23" "tbodygyro_mean_z"
+"24" "tbodygyro_std_x"
+"25" "tbodygyro_std_y"
+"26" "tbodygyro_std_z"
+"27" "tbodygyrojerk_mean_x"
+"28" "tbodygyrojerk_mean_y"
+"29" "tbodygyrojerk_mean_z"
+"30" "tbodygyrojerk_std_x"
+"31" "tbodygyrojerk_std_y"
+"32" "tbodygyrojerk_std_z"
+"33" "tbodyaccmag_mean"
+"34" "tbodyaccmag_std"
+"35" "tgravityaccmag_mean"
+"36" "tgravityaccmag_std"
+"37" "tbodyaccjerkmag_mean"
+"38" "tbodyaccjerkmag_std"
+"39" "tbodygyromag_mean"
+"40" "tbodygyromag_std"
+"41" "tbodygyrojerkmag_mean"
+"42" "tbodygyrojerkmag_std"
+"43" "fbodyacc_mean_x"
+"44" "fbodyacc_mean_y"
+"45" "fbodyacc_mean_z"
+"46" "fbodyacc_std_x"
+"47" "fbodyacc_std_y"
+"48" "fbodyacc_std_z"
+"49" "fbodyaccjerk_mean_x"
+"50" "fbodyaccjerk_mean_y"
+"51" "fbodyaccjerk_mean_z"
+"52" "fbodyaccjerk_std_x"
+"53" "fbodyaccjerk_std_y"
+"54" "fbodyaccjerk_std_z"
+"55" "fbodygyro_mean_x"
+"56" "fbodygyro_mean_y"
+"57" "fbodygyro_mean_z"
+"58" "fbodygyro_std_x"
+"59" "fbodygyro_std_y"
+"60" "fbodygyro_std_z"
+"61" "fbodyaccmag_mean"
+"62" "fbodyaccmag_std"
+"63" "fbodybodyaccjerkmag_mean"
+"64" "fbodybodyaccjerkmag_std"
+"65" "fbodybodygyromag_mean"
+"66" "fbodybodygyromag_std"
+"67" "fbodybodygyrojerkmag_mean"
+"68" "fbodybodygyrojerkmag_std"
+```
 
-## FIXME,  read.table() will load different variable names. 
-## This should be done in the run_analysis.R script.
 
+# Raw dataset and transformation
 
-"3" "tBodyAcc-mean()-X"
-"4" "tBodyAcc-mean()-Y"
-"5" "tBodyAcc-mean()-Z"
-"6" "tBodyAcc-std()-X"
-"7" "tBodyAcc-std()-Y"
-"8" "tBodyAcc-std()-Z"
-"9" "tGravityAcc-mean()-X"
-"10" "tGravityAcc-mean()-Y"
-"11" "tGravityAcc-mean()-Z"
-"12" "tGravityAcc-std()-X"
-"13" "tGravityAcc-std()-Y"
-"14" "tGravityAcc-std()-Z"
-"15" "tBodyAccJerk-mean()-X"
-"16" "tBodyAccJerk-mean()-Y"
-"17" "tBodyAccJerk-mean()-Z"
-"18" "tBodyAccJerk-std()-X"
-"19" "tBodyAccJerk-std()-Y"
-"20" "tBodyAccJerk-std()-Z"
-"21" "tBodyGyro-mean()-X"
-"22" "tBodyGyro-mean()-Y"
-"23" "tBodyGyro-mean()-Z"
-"24" "tBodyGyro-std()-X"
-"25" "tBodyGyro-std()-Y"
-"26" "tBodyGyro-std()-Z"
-"27" "tBodyGyroJerk-mean()-X"
-"28" "tBodyGyroJerk-mean()-Y"
-"29" "tBodyGyroJerk-mean()-Z"
-"30" "tBodyGyroJerk-std()-X"
-"31" "tBodyGyroJerk-std()-Y"
-"32" "tBodyGyroJerk-std()-Z"
-"33" "tBodyAccMag-mean()"
-"34" "tBodyAccMag-std()"
-"35" "tGravityAccMag-mean()"
-"36" "tGravityAccMag-std()"
-"37" "tBodyAccJerkMag-mean()"
-"38" "tBodyAccJerkMag-std()"
-"39" "tBodyGyroMag-mean()"
-"40" "tBodyGyroMag-std()"
-"41" "tBodyGyroJerkMag-mean()"
-"42" "tBodyGyroJerkMag-std()"
-"43" "fBodyAcc-mean()-X"
-"44" "fBodyAcc-mean()-Y"
-"45" "fBodyAcc-mean()-Z"
-"46" "fBodyAcc-std()-X"
-"47" "fBodyAcc-std()-Y"
-"48" "fBodyAcc-std()-Z"
-"49" "fBodyAcc-meanFreq()-X"
-"50" "fBodyAcc-meanFreq()-Y"
-"51" "fBodyAcc-meanFreq()-Z"
-"52" "fBodyAccJerk-mean()-X"
-"53" "fBodyAccJerk-mean()-Y"
-"54" "fBodyAccJerk-mean()-Z"
-"55" "fBodyAccJerk-std()-X"
-"56" "fBodyAccJerk-std()-Y"
-"57" "fBodyAccJerk-std()-Z"
-"58" "fBodyAccJerk-meanFreq()-X"
-"59" "fBodyAccJerk-meanFreq()-Y"
-"60" "fBodyAccJerk-meanFreq()-Z"
-"61" "fBodyGyro-mean()-X"
-"62" "fBodyGyro-mean()-Y"
-"63" "fBodyGyro-mean()-Z"
-"64" "fBodyGyro-std()-X"
-"65" "fBodyGyro-std()-Y"
-"66" "fBodyGyro-std()-Z"
-"67" "fBodyGyro-meanFreq()-X"
-"68" "fBodyGyro-meanFreq()-Y"
-"69" "fBodyGyro-meanFreq()-Z"
-"70" "fBodyAccMag-mean()"
-"71" "fBodyAccMag-std()"
-"72" "fBodyAccMag-meanFreq()"
-"73" "fBodyBodyAccJerkMag-mean()"
-"74" "fBodyBodyAccJerkMag-std()"
-"75" "fBodyBodyAccJerkMag-meanFreq()"
-"76" "fBodyBodyGyroMag-mean()"
-"77" "fBodyBodyGyroMag-std()"
-"78" "fBodyBodyGyroMag-meanFreq()"
-"79" "fBodyBodyGyroJerkMag-mean()"
-"80" "fBodyBodyGyroJerkMag-std()"
-"81" "fBodyBodyGyroJerkMag-meanFreq()"
+Following raw data files from the 'proj' directory are loaded for analysis. 
+
+* 'proj/activity_labels.txt'
+* 'proj/train//subject_train.txt'
+* 'proj/train/y_train.txt'
+* 'proj/train/X_train.txt'
+* 'proj/test//subject_test.txt'
+* 'proj/test/y_test.txt'
+* 'proj/test/X_test.txt'
+
+Please check 'README.md' for more details about the raw dataset.
